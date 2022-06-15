@@ -1,0 +1,22 @@
+name: laravel_proj
+recipe: laravel
+config:
+  config:
+    database: config/custom-mysql.conf
+  php: '7.3'
+  composer_version: '2.0.3'
+  via: apache:2.4
+  webroot: ./my-laravel-app/public
+  xdebug: false
+  database: mysql:5.7.28
+  drush: "*"
+services:
+    cache:
+      type: redis
+    pma:
+      type: phpmyadmin
+      hosts:
+      - database
+proxy:
+  pma:
+    - pma.laravel_proj.lndo.site
